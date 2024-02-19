@@ -143,7 +143,7 @@ class Log:
             print("Error: Unable to create log file!")
 
     def log_message(self, level, message):
-        if self.log_level.value >= level.value:  # Compare integer values of enum members
+        if self.log_level.value >= level.value:
             try:
                 with open("log.txt", "a") as logfile:
                     level_string = {Level.ERROR: "ERROR", Level.WARNING: "WARNING",
@@ -179,7 +179,7 @@ if __name__ == "__main__":
         print("0. Exit")
         choice = int(input("Enter your choice: "))
 
-        if choice == 1:  # Faculty Choice
+        if choice == 1: 
             print("Faculty Operations:")
             print("1. Create and assign a student to a faculty")
             print("2. Graduate a student from a faculty")
@@ -189,7 +189,7 @@ if __name__ == "__main__":
             print("0. Return to the Board Menu")
             faculty_choice = int(input("Enter your choice: "))
 
-            if faculty_choice == 1:  # Create and assign a student to a faculty
+            if faculty_choice == 1:  
                 first = input("Enter student first name: ")
                 last = input("Enter student last name: ")
                 email = input("Enter student email: ")
@@ -214,7 +214,7 @@ if __name__ == "__main__":
                     print(f"Faculty with abbreviation '{abbreviation}' not found!")
                     log.m_error(f"Faculty with abbreviation '{abbreviation}' not found when adding a student.")
 
-            elif faculty_choice == 2:  # Graduate a student from a faculty
+            elif faculty_choice == 2:  
                 email = input("Enter student email to graduate: ")
                 log.m_info("Attempting to graduate student with email: " + email)
                 faculty = tum.find_faculty_by_student_email(email)
@@ -226,15 +226,15 @@ if __name__ == "__main__":
                     print(f"Student with email '{email}' not found in any faculty.")
                     log.m_warn(f"Attempted to graduate student with email '{email}', but student not found.")
 
-            elif faculty_choice == 3:  # Display current enrolled students
+            elif faculty_choice == 3: 
                 abbreviation = input("Enter faculty abbreviation to display current enrolled students: ")
                 tum.display_students_in_faculty(abbreviation)
 
-            elif faculty_choice == 4:  # Display graduates
+            elif faculty_choice == 4:  
                 abbreviation = input("Enter faculty abbreviation to display graduates: ")
                 tum.display_graduates_in_faculty(abbreviation)
 
-            elif faculty_choice == 5:  # Check if a student belongs to a faculty
+            elif faculty_choice == 5: 
                 email = input("Enter student email to check: ")
                 log.m_info(f"Checking if student with email '{email}' belongs to any faculty.")
                 faculty = tum.find_faculty_by_student_email(email)
@@ -245,7 +245,7 @@ if __name__ == "__main__":
                     print(f"Student with email '{email}' not found in any faculty.")
                     log.m_warn(f"Student with email '{email}' not found in any faculty.")
 
-        elif choice == 2:  # General Choice
+        elif choice == 2: 
             print("General Operations:")
             print("1. Create a new faculty")
             print("2. Search what faculty a student belongs to")
@@ -254,7 +254,7 @@ if __name__ == "__main__":
             print("0. Return to the Board Menu")
             general_choice = int(input("Enter your choice: "))
 
-            if general_choice == 1:  # Create a new faculty
+            if general_choice == 1:  
                 name = input("Enter faculty name: ")
                 abbreviation = input("Enter faculty abbreviation: ")
                 field = int(input("Enter field (0-4): "))
@@ -264,7 +264,7 @@ if __name__ == "__main__":
                 FileManager.save_university_data(SAVE, tum)
                 log.m_info("Saved data in the file.")
 
-            elif general_choice == 2:  # Search what faculty a student belongs to
+            elif general_choice == 2:
                 email = input("Enter student email to search: ")
                 log.m_info("Searching faculty for student with email: " + email)
                 faculty = tum.find_faculty_by_student_email(email)
@@ -275,14 +275,14 @@ if __name__ == "__main__":
                     print(f"Student with email '{email}' not found in any faculty.")
                     log.m_warn(f"Student with email '{email}' not found in any faculty.")
 
-            elif general_choice == 3:  # Display University faculties
+            elif general_choice == 3:  
                 tum.display_faculties()
 
-            elif general_choice == 4:  # Display faculties belonging to a field
+            elif general_choice == 4:  
                 field = int(input("Enter the field (0-4): "))
                 tum.display_faculties_by_field(StudyField(field))
 
-        elif choice == 0:  # Exiting the Program
+        elif choice == 0: 
             print("Exiting...")
             FileManager.save_university_data(SAVE, tum)
             log.m_info("Exiting the program.")
