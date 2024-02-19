@@ -1,9 +1,7 @@
 import enum
 
-# Define the SAVE variable or provide a valid file path
 SAVE = "University.txt"
 
-# Define the Level enum for logging
 class Level(enum.Enum):
     ERROR = 1
     WARNING = 2
