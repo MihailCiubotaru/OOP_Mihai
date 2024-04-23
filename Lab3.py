@@ -5,7 +5,7 @@ import json
 import struct
 import datetime
 
-FOLDER_PATH = "E:\TEMPORARE\MyGithub"
+FOLDER_PATH = "C:\\Users\\Mihai\\Desktop\\Laborator3"
 SnapListName = "CommitList.json"
 TreePos = -1
 SNAPSHOT_FOLDER = os.path.join(FOLDER_PATH, "SnapShots")
@@ -15,9 +15,6 @@ CurrentCommit = []
 LastSnapshot = []
 FILE_CURRENT_LIST = []
 FILE_NAME_LIST = os.listdir(FOLDER_PATH)
-
-if not os.path.exists(SNAPSHOT_FOLDER):
-    os.makedirs(SNAPSHOT_FOLDER)
 
 class FileInfo:
     def __init__(self, filename, size, created, modified,specific):
@@ -73,14 +70,10 @@ def get_meta_info(filename):
             width,height = struct.unpack(">II", img_data[16:24])
         spec = str(width) + ' X ' + str(height)
         #spec = "Imagine"
-    elif filename.lower().endswith((".txt")):
+    elif filename.lower().endswith((".txt", ".py")):
         with open(filepath, "r") as file:
             read = file.read()
             spec = str(len(read.splitlines())) + " Linii " + str(len(read.split())) + " cuvinte " + str(len(read)) + " Caractere"
-    elif filename.lower().endswith((".py")):
-        with open(filepath, "r") as file:
-            read = file.read()
-            spec = str(len(read.splitlines())) + " Linii " + str(read.lower().count("class")) + " Classes " + str(read.lower().count("def")) + " Methodes"
 
     file_info = FileInfo(
         filename=filename,
